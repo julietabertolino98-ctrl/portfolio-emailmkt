@@ -19,6 +19,26 @@ html{scroll-behavior:smooth}
 .lang-btn.on{background:#1F3BDB;color:#fff}
 img{max-width:100%}
 </style>
+
+<style id="motion">
+@media (prefers-reduced-motion: no-preference){
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+svg path[d^="M50 4 L60 38"]{transform-origin:50px 50px;animation:spin 18s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.blob{animation:blob 9s ease-in-out infinite alternate}
+@keyframes blob{to{border-radius:42% 58% 37% 63% / 55% 46% 54% 45%;transform:translate(-18px,14px) rotate(6deg)}}
+}
+a[style*="border-radius: 999px"],span[style*="border-radius: 999px"]{transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease}
+a[style*="border-radius: 999px"]:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(31,59,219,.28)}
+span[style*="border: 2px solid #FFEE6E"]:hover{background:#FFEE6E;color:#1F3BDB !important;transform:translateY(-2px)}
+div[style*="border-radius: 20px"]{transition:transform .3s ease,box-shadow .3s ease}
+div[style*="border-radius: 20px"]:hover{transform:translateY(-6px) rotate(-.6deg);box-shadow:0 16px 34px rgba(20,32,107,.22)}
+img[style*="border-radius: 22px"]{transition:transform .4s ease}
+img[style*="border-radius: 22px"]:hover{transform:scale(1.02) rotate(.8deg)}
+a[style*="border-top: 2px dashed"]{transition:padding-left .25s ease}
+a[style*="border-top: 2px dashed"]:hover{padding-left:12px !important}
+</style>
 </head>
 <body>
 <div id="page-es" lang="es" hidden>
@@ -291,6 +311,28 @@ try{localStorage.setItem('lang',l)}catch(e){}
 }
 var saved=null;try{saved=localStorage.getItem('lang')}catch(e){}
 setLang(saved||'en');
+</script>
+<script id="motion-js">
+(function(){
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('section[id$="-inicio"] > div:first-child').forEach(function(b){b.classList.add('blob')});
+if(reduce||!('IntersectionObserver' in window))return;
+var els=[];
+document.querySelectorAll('section > div').forEach(function(d){ if(!d.classList.contains('blob')&&getComputedStyle(d).position!=='absolute'){ Array.prototype.forEach.call(d.children,function(c,i){c.classList.add('rv');c.style.transitionDelay=Math.min(i,5)*90+'ms';els.push(c);}); }});
+function fmt(n,dec,th,ds){var p=n.toFixed(dec).split('.');p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,th);return p.join(ds);}
+function count(el){
+ var t=el.textContent, m=t.match(/^(\D*)([\d.,]+)(.*)$/); if(!m)return;
+ var num=m[2], th='', ds='.', dec=0, v;
+ var sep=num.match(/[.,]/);
+ if(sep){ var after=num.split(sep[0])[1]; if(after.length===3){th=sep[0];ds=sep[0]===','?'.':',';v=parseFloat(num.split(th).join(''));} else {ds=sep[0];dec=after.length;v=parseFloat(num.replace(',','.'));} } else v=parseFloat(num);
+ var t0=null,d=1400;
+ function step(ts){if(!t0)t0=ts;var k=Math.min((ts-t0)/d,1),e=1-Math.pow(1-k,3);el.textContent=m[1]+fmt(v*e,dec,th,ds)+m[3];if(k<1)requestAnimationFrame(step);else el.textContent=t;}
+ requestAnimationFrame(step);
+}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('span[style*="font-size: 28px"]').forEach(function(s){if(!s.dataset.done){s.dataset.done=1;count(s);}});io.unobserve(e.target);}})},{threshold:.12});
+els.forEach(function(el){io.observe(el)});
+document.querySelectorAll('[data-lang-btn]').forEach(function(b){b.addEventListener('click',function(){setTimeout(function(){els.forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight)el.classList.add('in');});},50);});});
+})();
 </script>
 </body>
 </html>

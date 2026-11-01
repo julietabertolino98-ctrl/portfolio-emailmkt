@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +21,7 @@ img{max-width:100%}
 </style>
 </head>
 <body>
-<div id="page-es" lang="es">
+<div id="page-es" lang="es" hidden>
 <div style="background: #FFFFFF; color: #14206B; font-family: 'DM Sans', 'Helvetica Neue', sans-serif; min-height: 100vh">
 <header style="background: #FFFFFF">
 <div style="max-width: 1160px; margin: 0 auto; padding: 20px 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center">
@@ -151,7 +151,7 @@ img{max-width:100%}
 </section>
 </div>
 </div>
-<div id="page-en" lang="en" hidden>
+<div id="page-en" lang="en">
 <div style="background: #FFFFFF; color: #14206B; font-family: 'DM Sans', 'Helvetica Neue', sans-serif; min-height: 100vh">
 <header style="background: #FFFFFF">
 <div style="max-width: 1160px; margin: 0 auto; padding: 20px 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center">
@@ -290,7 +290,7 @@ document.querySelectorAll('[data-lang-btn]').forEach(function(b){b.classList.tog
 try{localStorage.setItem('lang',l)}catch(e){}
 }
 var saved=null;try{saved=localStorage.getItem('lang')}catch(e){}
-setLang(saved||((navigator.language||'es').slice(0,2)==='es'?'es':'en'));
+setLang(saved||'en');
 </script>
 </body>
 </html>

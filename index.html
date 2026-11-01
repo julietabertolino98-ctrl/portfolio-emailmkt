@@ -65,10 +65,12 @@ div[style*="border-radius: 20px"]:hover .spark .hd{animation:nudge .8s ease-in-o
 .fab{font-family:'DM Sans','Helvetica Neue',Arial,sans-serif;font-size:16px;position:fixed;right:20px;bottom:20px;z-index:50;display:inline-flex;align-items:center;gap:8px;min-height:50px;padding:0 24px;border-radius:999px;background:#FFEE6E;color:#14206B;font-weight:800;text-decoration:none;box-shadow:0 10px 28px rgba(20,32,107,.3);transition:opacity .3s,transform .3s}
 .fab.off{opacity:0;pointer-events:none;transform:translateY(12px)}
 @media (max-width:700px){
+#es-tip > div{padding:48px 20px !important;gap:24px !important}
+#es-tip > div > div:first-child{max-width:210px !important}
 div[style*="padding: 96px 24px"]{padding:52px 20px !important;gap:28px !important}
 div[style*="padding: 72px 24px 96px"]{padding:40px 20px 52px !important;gap:28px !important}
 div[style*="padding: 120px 24px"]{padding:60px 20px !important}
-section[id$="-sobre"] div[style*="max-width: 320px"],section[id$="-sobre"] div[style*="max-width: 400px"]{max-width:230px !important;margin:0 auto}
+section[id$="-sobre"] div[style*="max-width: 400px"]{max-width:230px !important;margin:0 auto}
 img[src="juli-trabajando.jpg"]{max-width:220px !important}
 div[style*="minmax(250px, 1fr)"]{display:flex !important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px !important;padding-bottom:6px;-webkit-overflow-scrolling:touch}
 div[style*="minmax(250px, 1fr)"] > div{flex:0 0 80%;scroll-snap-align:start;padding:22px !important}
@@ -79,7 +81,7 @@ article span[style*="font-size: 28px"]{font-size:22px !important}
 .spark{display:none}
 h1{font-size:44px !important}
 }
-.cmt{display:flex;align-items:center;gap:8px;margin-top:12px;background:#fff;border-radius:999px;padding:6px 6px 6px 8px;box-shadow:0 8px 22px rgba(8,16,80,.25);transform:rotate(1deg)}
+.cmt{max-width:420px;display:flex;align-items:center;gap:8px;margin-top:12px;background:#fff;border-radius:999px;padding:6px 6px 6px 8px;box-shadow:0 8px 22px rgba(8,16,80,.25);transform:rotate(1deg)}
 .cmt-av{flex:none;width:30px;height:30px;border-radius:50%;background:#FFEE6E;color:#1F3BDB;display:flex;align-items:center;justify-content:center;font-size:15px}
 .cmt-in{flex:1;min-width:0;border:0;outline:0;font:700 15px 'Space Mono','Courier New',monospace;color:#14206B;background:transparent;letter-spacing:.06em}
 .cmt-btn{flex:none;width:38px;height:38px;border:0;border-radius:50%;background:#1F3BDB;color:#fff;font-size:16px;cursor:pointer;transition:transform .2s,background .2s;animation:cmtPulse 2.4s ease-in-out infinite}
@@ -131,14 +133,8 @@ h1{font-size:44px !important}
 </section>
 <section id="es-sobre" style="background: #1F3BDB; color: #FFFFFF">
 <div style="max-width: 1160px; margin: 0 auto; padding: 96px 24px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
-<div style="flex: 1 1 300px; min-width: 0; max-width: 320px; padding: 14px; border: 5px solid #FFEE6E; border-radius: 34px 18px 38px 22px; transform: rotate(-2deg)">
-<video src="juli-video.mp4" poster="juli-video-poster.jpg" controls playsinline preload="none" style="display: block; width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 22px; background: #14206B"></video><p style="margin: 10px 0 0; text-align: center; font-family: 'Space Mono', 'Courier New', monospace; font-size: 12px; color: #FFEE6E">👇 Comentá EMAIL y te digo cómo no caer en spam</p>
-<form class="cmt" onsubmit="return sendCmt(event)" aria-label="Pedir tips para no caer en spam">
-<span class="cmt-av" aria-hidden="true">✉</span>
-<input class="cmt-in" name="c" value="EMAIL" aria-label="Comentario" autocomplete="off">
-<button class="cmt-btn" type="submit" aria-label="Enviar">➤</button>
-</form>
-<p class="cmt-ok" hidden>¡Listo! Se abrió tu mail para enviarme el pedido 💌</p>
+<div style="flex: 1 1 300px; min-width: 0; max-width: 400px; padding: 14px; border: 5px solid #FFEE6E; border-radius: 34px 18px 38px 22px; transform: rotate(-2deg)">
+<img src="juli.jpg" alt="Julieta Bertolino" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; border-radius: 22px">
 </div>
 <div style="flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
 <h2 style="margin: 0; font-family: 'Unbounded', 'Arial Black', sans-serif; font-weight: 800; font-size: clamp(36px, 5vw, 64px); line-height: 1.02; letter-spacing: -0.01em; text-transform: uppercase; color: #FFFFFF">Sobre mí</h2>
@@ -196,6 +192,25 @@ h1{font-size:44px !important}
 <h2 style="margin: 0; font-family: 'Unbounded', 'Arial Black', sans-serif; font-weight: 800; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.02; letter-spacing: -0.01em; text-transform: uppercase; color: #1F3BDB">Experiencia</h2>
 <div style="display: flex; flex-direction: column; border-bottom: 2px dashed #C9D1FA"><div style="display: flex; flex-wrap: wrap; gap: 6px 32px; padding: 18px 0; border-top: 2px dashed #C9D1FA"><span style="flex: 0 0 150px; font-family: 'Space Mono', 'Courier New', monospace; font-size: 14px; color: #1F3BDB">Sep 2026 – actualidad</span><span style="flex: 1 1 360px; font-size: 17px; color: #14206B"><strong>Email Marketing Specialist</strong> · Retain Marketing (marcas de Argentina, EE.UU. y Reino Unido)</span></div><div style="display: flex; flex-wrap: wrap; gap: 6px 32px; padding: 18px 0; border-top: 2px dashed #C9D1FA"><span style="flex: 0 0 150px; font-family: 'Space Mono', 'Courier New', monospace; font-size: 14px; color: #1F3BDB">2020 – 2026</span><span style="flex: 1 1 360px; font-size: 17px; color: #14206B"><strong>Email marketing freelance</strong> · Marcas de e-commerce, salud y estética, óptica y distribución mayorista</span></div><div style="display: flex; flex-wrap: wrap; gap: 6px 32px; padding: 18px 0; border-top: 2px dashed #C9D1FA"><span style="flex: 0 0 150px; font-family: 'Space Mono', 'Courier New', monospace; font-size: 14px; color: #1F3BDB">Mar – Sep 2026</span><span style="flex: 1 1 360px; font-size: 17px; color: #14206B"><strong>Email Strategist Specialist</strong> · We Are Agency</span></div><div style="display: flex; flex-wrap: wrap; gap: 6px 32px; padding: 18px 0; border-top: 2px dashed #C9D1FA"><span style="flex: 0 0 150px; font-family: 'Space Mono', 'Courier New', monospace; font-size: 14px; color: #1F3BDB">2024 – 2025</span><span style="flex: 1 1 360px; font-size: 17px; color: #14206B"><strong>CRM Business Analyst</strong> · Swarovski &amp; Swatch Argentina</span></div></div>
 <p style="margin: 0; font-size: 15px; line-height: 1.7; color: #14206B"><strong style="color: #1F3BDB">Certificaciones:</strong> Klaviyo · Synerise Email · HubSpot Marketing Software · CRM Marketing Essentials · Community Manager y Publicidad</p>
+</div>
+</section>
+<section id="es-tip" style="background: #1F3BDB; color: #FFFFFF">
+<div style="max-width: 1000px; margin: 0 auto; padding: 80px 24px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center; justify-content: center">
+<div style="flex: 0 1 280px; min-width: 0; max-width: 280px; padding: 12px; border: 5px solid #FFEE6E; border-radius: 30px 18px 34px 22px; transform: rotate(-2deg)">
+<video src="juli-video.mp4" poster="juli-video-poster.jpg" controls playsinline preload="none" style="display: block; width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 22px; background: #14206B"></video>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; max-width: 520px; display: flex; flex-direction: column; gap: 18px">
+<span style="align-self: flex-start; padding: 6px 14px; border-radius: 999px; background: #FFEE6E; color: #1F3BDB; font-family: 'Space Mono', 'Courier New', monospace; font-weight: 700; font-size: 13px; letter-spacing: .08em">🎁 TIP DE REGALO</span>
+<h2 style="margin: 0; font-family: 'Unbounded', 'Arial Black', sans-serif; font-weight: 800; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.05; text-transform: uppercase; color: #FFFFFF">Tipos de emails, <span style="color: #FFEE6E">en 1 minuto</span></h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #E3E8FF">Te cuento la diferencia entre emails transaccionales, masivos y automatizados, y cuándo conviene usar cada uno.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.65; color: #FFFFFF"><strong>¿Querés saber cómo hacer que tus emails no caigan en spam?</strong> Comentá EMAIL acá abajo 👇</p>
+<form class="cmt" onsubmit="return sendCmt(event)" aria-label="Pedir tips para no caer en spam">
+<span class="cmt-av" aria-hidden="true">✉</span>
+<input class="cmt-in" name="c" value="EMAIL" aria-label="Comentario" autocomplete="off">
+<button class="cmt-btn" type="submit" aria-label="Enviar">➤</button>
+</form>
+<p class="cmt-ok" hidden>¡Listo! Se abrió tu mail para enviarme el pedido 💌</p>
+</div>
 </div>
 </section>
 <section id="es-contacto" style="background: #EEF1FF">

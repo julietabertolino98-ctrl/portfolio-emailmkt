@@ -79,6 +79,16 @@ article span[style*="font-size: 28px"]{font-size:22px !important}
 .spark{display:none}
 h1{font-size:44px !important}
 }
+.cmt{display:flex;align-items:center;gap:8px;margin-top:12px;background:#fff;border-radius:999px;padding:6px 6px 6px 8px;box-shadow:0 8px 22px rgba(8,16,80,.25);transform:rotate(1deg)}
+.cmt-av{flex:none;width:30px;height:30px;border-radius:50%;background:#FFEE6E;color:#1F3BDB;display:flex;align-items:center;justify-content:center;font-size:15px}
+.cmt-in{flex:1;min-width:0;border:0;outline:0;font:700 15px 'Space Mono','Courier New',monospace;color:#14206B;background:transparent;letter-spacing:.06em}
+.cmt-btn{flex:none;width:38px;height:38px;border:0;border-radius:50%;background:#1F3BDB;color:#fff;font-size:16px;cursor:pointer;transition:transform .2s,background .2s;animation:cmtPulse 2.4s ease-in-out infinite}
+.cmt-btn:hover{transform:scale(1.1);background:#14206B}
+@keyframes cmtPulse{0%,100%{box-shadow:0 0 0 0 rgba(31,59,219,.5)}50%{box-shadow:0 0 0 8px rgba(31,59,219,0)}}
+.cmt.sent .cmt-btn{animation:cmtFly .6s ease forwards}
+@keyframes cmtFly{to{transform:translate(18px,-18px) rotate(-20deg);opacity:0}}
+.cmt-ok{margin:10px 0 0;text-align:center;font:700 13px 'Space Mono','Courier New',monospace;color:#FFEE6E}
+@media (prefers-reduced-motion: reduce){.cmt-btn{animation:none}}
 </style>
 </head>
 <body>
@@ -122,7 +132,13 @@ h1{font-size:44px !important}
 <section id="es-sobre" style="background: #1F3BDB; color: #FFFFFF">
 <div style="max-width: 1160px; margin: 0 auto; padding: 96px 24px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
 <div style="flex: 1 1 300px; min-width: 0; max-width: 320px; padding: 14px; border: 5px solid #FFEE6E; border-radius: 34px 18px 38px 22px; transform: rotate(-2deg)">
-<video src="juli-video.mp4" poster="juli-video-poster.jpg" controls playsinline preload="none" style="display: block; width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 22px; background: #14206B"></video><p style="margin: 10px 0 0; text-align: center; font-family: 'Space Mono', 'Courier New', monospace; font-size: 12px; color: #FFEE6E">▶ Tipos de emails, en 1 minuto</p>
+<video src="juli-video.mp4" poster="juli-video-poster.jpg" controls playsinline preload="none" style="display: block; width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 22px; background: #14206B"></video><p style="margin: 10px 0 0; text-align: center; font-family: 'Space Mono', 'Courier New', monospace; font-size: 12px; color: #FFEE6E">👇 Comentá EMAIL y te digo cómo no caer en spam</p>
+<form class="cmt" onsubmit="return sendCmt(event)" aria-label="Pedir tips para no caer en spam">
+<span class="cmt-av" aria-hidden="true">✉</span>
+<input class="cmt-in" name="c" value="EMAIL" aria-label="Comentario" autocomplete="off">
+<button class="cmt-btn" type="submit" aria-label="Enviar">➤</button>
+</form>
+<p class="cmt-ok" hidden>¡Listo! Se abrió tu mail para enviarme el pedido 💌</p>
 </div>
 <div style="flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
 <h2 style="margin: 0; font-family: 'Unbounded', 'Arial Black', sans-serif; font-weight: 800; font-size: clamp(36px, 5vw, 64px); line-height: 1.02; letter-spacing: -0.01em; text-transform: uppercase; color: #FFFFFF">Sobre mí</h2>
@@ -359,6 +375,13 @@ document.querySelectorAll('[data-lang-btn]').forEach(function(b){b.addEventListe
 (function(){if(!('IntersectionObserver' in window))return;
 ['es','en'].forEach(function(l){var c=document.getElementById(l+'-contacto'),f=document.querySelector('#page-'+l+' .fab'),h=document.getElementById(l+'-inicio');if(!c||!f)return;
 var vis={};var io=new IntersectionObserver(function(es){es.forEach(function(e){vis[e.target.id]=e.isIntersecting});f.classList.toggle('off',!!(vis[l+'-contacto']||vis[l+'-inicio']));},{threshold:.15});io.observe(c);if(h)io.observe(h);});})();
+</script>
+<script id="cmt-js">
+function sendCmt(e){e.preventDefault();var f=e.target,v=(f.c.value||'EMAIL').trim();
+f.classList.add('sent');var ok=f.nextElementSibling;
+setTimeout(function(){ok.hidden=false;
+location.href='mailto:julietabertolino98@gmail.com?subject='+encodeURIComponent('EMAIL: quiero los tips para no caer en spam')+'&body='+encodeURIComponent('Hola Juli! Vi tu video y comento: '+v+'\n\nQuiero los tips para que mis emails no caigan en spam.\n\nMi marca / web: ');
+setTimeout(function(){f.classList.remove('sent')},1500);},450);return false;}
 </script>
 </body>
 </html>
